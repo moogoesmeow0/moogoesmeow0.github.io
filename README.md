@@ -3,4 +3,4 @@
 I like potatoes and cats
 
 LOOK! A TURTLE! ↓
-![DSC_0041](https://github.com/user-attachments/assets/86623ba9-5882-4bf0-86e7-2c0efedca513)
+![DSC_0041](https://github.com/user-attachments/assets/725775b3-49df-48d9-872b-74264569d69e)
