@@ -1,40 +1,92 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>moo</title>
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Geometric Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body></body>
-  <h3 id="amogus-">Hi ඞ</h3>
-  <p>I like 'pooters and cats</p>
-    <p>LOOK! A TURTLE! ↓<p>
-  <img src="images/turtle.jpeg" alt="DSC_0041" width="700" height="500"></p>
-  <div id="comment-container">
-  </div>
-  <textarea name="" id="new-comment" cols="60" rows="5"></textarea>
-  <br>
-  <button id="btn-post">Post</button>
-  <script>
-    // Step 1: Add an event listener to the "Post" button
-    document.getElementById("btn-post").addEventListener("click", function () {
-      // This line sets up an event listener for the click event on the "Post" button.
-      // When the button is clicked, the function provided as the second argument will run.
 
-      // Step 2: Get the comment from the textarea
-      const newComment = docment.getElementById("new-comment").value;
+<body>
+    <div class="container">
+        <div class="kaomoji-sidebar kaomoji-left">
+            <div class="scroll-text" id="kaomoji-left"></div>
+        </div>
 
-      // Step 3: Create a new paragraph element for the comment
-      const commentContainer = document.getElementById("comment-container");
-      const commentElement = document.createElement("p");
-      commentElement.innerText = newComment;
+        <main class="content">
+            <header class="header">
+                <h1>Welcome to<br> this webpage</h1>
+                <nav>
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#more">More</a>
+                </nav>
+            </header>
 
-      // Step 4: Append the comment to the comment container
-      commentContainer.appendChild(commentElement);
+            <section class="about-section" id="about">
+                <h2>About Me</h2>
+                <p>Hello! I like 'pooters and cats.</p>
+            </section>
 
-      // Clear the textarea after posting the comment
-      document.getElementById("new-comment").value = "";
-    });
-  </script>
+            <section class="project-section" id="projects">
+                <div>
+                    <h2>Recent Project</h2>
+                    <p>Look! I made a cute little lizard </p>
+                </div>
+                <img src="images/lizard.jpg" alt="2D computer animated lizard and snake" width=400 height=300>
+            </section>
+
+            <section class="more-section" id="more">
+                <h2>More</h2>
+                <p>If you're here, you know me irl or are just wierd. Either way, go touch some grass.
+                    <br><br>also, this website is open source, so visit the github repo here:
+                </p>
+                <a href="www.github.com"> link </a>
+            </section>
+        </main>
+
+        <div class="kaomoji-sidebar kaomoji-right">
+            <div class="scroll-text" id="kaomoji-right"></div>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Fetch kaomoji from the kaomoji.txt file and populate the scroll-text elements
+        fetch('kaomoji.txt')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Could not fetch kaomoji.txt');
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('kaomoji-left').textContent = data;
+                document.getElementById('kaomoji-right').textContent = data;
+            })
+            .catch(error => {
+                console.error('Error fetching kaomoji:', error);
+            });
+
+        // Infinite scrolling animation restart
+        const scrollTexts = document.querySelectorAll('.scroll-text');
+        scrollTexts.forEach(text => {
+            text.addEventListener('animationend', () => {
+                text.style.animation = 'none';
+                text.offsetHeight;
+                text.style.animation = 'scroll 20s linear infinite';
+            });
+        });
+    </script>
 </body>
+
 </html>
